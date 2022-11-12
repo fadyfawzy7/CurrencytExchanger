@@ -9,6 +9,10 @@ import { GridComponent } from './currency-exchanger/components/grid/grid.compone
 import { MaterialModule } from '../core/material/material.module';
 import { SharedModule } from '../core/shared/shared.module';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CustomInterceptor } from '../core/interceptors/custom.Interceptor';
+import { CurrencyService } from './currency-exchanger/services/currency.service';
+import { CurrencyApiService } from '../core/api/currency-exchanger/currency-api.service';
 
 
 @NgModule({
@@ -25,7 +29,14 @@ import { NgxEchartsModule } from 'ngx-echarts';
     SharedModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
-    })
-  ]
+    }),
+    HttpClientModule,
+
+  ],
+  providers: [
+    CurrencyApiService,   
+    CurrencyService,
+   {provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor, multi: true},
+  ],
 })
 export class MainModule { }
