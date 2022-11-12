@@ -14,7 +14,6 @@ import { CustomInterceptor } from '../core/interceptors/custom.Interceptor';
 import { CurrencyService } from './currency-exchanger/services/currency.service';
 import { CurrencyApiService } from '../core/api/currency-exchanger/currency-api.service';
 
-
 @NgModule({
   declarations: [
     HeaderComponent,

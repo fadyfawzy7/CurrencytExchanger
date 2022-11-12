@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { CurrencyApiService } from 'src/app/core/api/currency-exchanger/currency-api.service';
-import { currencyConversionParams } from '../models/currencyConversionParam';
+import { currencyConversionParams, currencyHistoricalDataParams } from '../models/currencyConversionParam';
 
 @Injectable()
 
 export class CurrencyService {
-  monthsArray:BehaviorSubject<[]> = new BehaviorSubject([])
+
   Grid:BehaviorSubject<{}> = new BehaviorSubject({})
-  checkURL:BehaviorSubject<{}> = new BehaviorSubject({})
   amountNum:BehaviorSubject<number> = new BehaviorSubject(0)
   currentCurrency:BehaviorSubject<any> =  new BehaviorSubject(null);
+  ratesArray:BehaviorSubject<[]> = new BehaviorSubject([])
+  MonthesValuesArray:BehaviorSubject<[]> = new BehaviorSubject([])
   constructor(private _CurrencyApiService:CurrencyApiService) {
-
    }
+
+   
    // Behavior Subject
    getAmount():Observable<any>{
     return this.amountNum.asObservable()
@@ -21,8 +23,11 @@ export class CurrencyService {
    getGrid():Observable<any>{
     return this.Grid.asObservable()
    }
-   getMonthes():Observable<any>{
-    return this.monthsArray.asObservable()
+   getMonthesValues():Observable<any>{
+    return this.MonthesValuesArray.asObservable()
+   }
+   getRatesArray():Observable<any>{
+    return this.ratesArray.asObservable()
    }
 
    // Api Calling Functions
@@ -35,7 +40,7 @@ export class CurrencyService {
    getAllCurrencies(baseCurrency:string){
     return this._CurrencyApiService.getAllCurrenciesAPI(baseCurrency)
    }
-   getHistoricalData(){
-    return this._CurrencyApiService.getCurrencyHistoricalDataAPI()
+   getHistoricalData(params:currencyHistoricalDataParams){
+    return this._CurrencyApiService.getCurrencyHistoricalDataAPI(params)
    }
 }

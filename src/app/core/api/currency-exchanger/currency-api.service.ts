@@ -25,8 +25,8 @@ export class CurrencyApiService {
       return this._HttpClient.get(this.baseUrl+`latest?symbols=&base=${baseCurrency}`)
     }
 
-    getCurrencyHistoricalDataAPI(){
-      return this._HttpClient.get(this.baseUrl+`timeseries?start_date=2021-11-09&end_date=2022-11-09&base=USD&symbols=EGP`)
+    getCurrencyHistoricalDataAPI(params:currencyHistoricalDataParams){
+      return this._HttpClient.get(this.baseUrl+`timeseries?start_date=${params.startDate}&end_date=${params.endDate}&base=${params.base}&symbols=${params.symbol}`)
     }
 
     getAllAvailableCurrenciesFromAPI(){

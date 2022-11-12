@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { EChartsOption } from 'echarts';
+import { EChartsOption, number } from 'echarts';
+import { CurrencyService } from '../../services/currency.service';
+import {formatDate} from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-details',
@@ -8,32 +13,68 @@ import { EChartsOption } from 'echarts';
 })
 export class DetailsComponent implements OnInit {
   // variables
+  unsubscribe!: Subscription
+  monthesChart:any[]=[]
+  month:any[]=[]
+  monthRate:any[]=[]
   chartOption!: EChartsOption;
+  monthsFromSuject:any = []
+  monthsValuesFromSuject:any = []
 
-  constructor() { }
+
+  constructor(private _currenceyService:CurrencyService) { }
 
   ngOnInit(): void {
 
-    this.chartOption = {
-      xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      },
-      yAxis: {
-        type: 'value'
-      },
-      series: [
-        {
-          data: [120, 200, 150, 80, 70, 110, 130],
-          type: 'bar',
-          color: '#e91e63',
-          showBackground: true,
-          backgroundStyle: {
-            color: 'rgba(233, 30, 180, 0.1)'
-          }
-        }
-      ]
-    };
+     // Get Rates for historical dates
+     this.unsubscribe = this._currenceyService.getRatesArray().subscribe({
+      next: res => {
+        this.month = []
+        this.monthRate = []
+
+        this.monthesChart = res
+        this.monthesChart.filter( rate => {
+
+        this.month.push(moment(rate.date).format('MMM:YYYY'))
+
+        this.monthRate.push(rate.value)
+
+        })
+
+
+        this.chartOption = {
+          xAxis: {
+            type: 'category',
+            data: this.month
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [
+            {
+              data: this.monthRate,
+              type: 'line',
+              color: '#e91e63'
+            }
+          ]
+        };
+
+
+      }
+
+   })
   }
 
+
+
+
+
+
+
+
+
+
+
 }
+
+

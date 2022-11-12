@@ -11,8 +11,8 @@ export interface currencyLatestParams {
 }
 
 export interface currencyHistoricalDataParams{
-  startDate:Date
-  endDate:Date
+  startDate:string
+  endDate:string
   base:string
   symbol:string
 }

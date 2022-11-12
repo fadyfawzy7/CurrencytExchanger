@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://api.apilayer.com/fixer/',
-  apiKey: 'OS1tW8OzQhV6B4r0fyGp0gNTF7oHfWSY'
+  apiKey: 'IulDazFyo1W2gfEPcbEddsmxIvt90tm9'
 };
 
 /*
@@ -17,5 +17,3 @@ export const environment = {
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
 // list of api keys
-//rI8dCuVW6b88hDGh8sSDOOXYznIBbLGx
-//OS1tW8OzQhV6B4r0fyGp0gNTF7oHfWSY
