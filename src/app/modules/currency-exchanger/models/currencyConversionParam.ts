@@ -5,3 +5,19 @@ export interface currencyConversionParams {
 
 }
 
+export interface currencyLatestParams {
+  symbols : string 
+  base : string 
+}
+
+export interface currencyHistoricalDataParams{
+  startDate:Date
+  endDate:Date
+  base:string
+  symbol:string
+}
+
+export interface rateDetails{
+  date:string;
+  value:Number;
+}

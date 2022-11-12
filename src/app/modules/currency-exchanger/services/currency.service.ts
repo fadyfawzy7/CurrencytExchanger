@@ -14,8 +14,28 @@ export class CurrencyService {
   constructor(private _CurrencyApiService:CurrencyApiService) {
 
    }
+   // Behavior Subject
+   getAmount():Observable<any>{
+    return this.amountNum.asObservable()
+   }
+   getGrid():Observable<any>{
+    return this.Grid.asObservable()
+   }
+   getMonthes():Observable<any>{
+    return this.monthsArray.asObservable()
+   }
 
+   // Api Calling Functions
+   getAllSymbols(){
+    return this._CurrencyApiService.getAllAvailableCurrenciesFromAPI();
+   }
+   getConversion(parms: currencyConversionParams){
+    return this._CurrencyApiService.getConversionAPI(parms);
+   }
    getAllCurrencies(baseCurrency:string){
     return this._CurrencyApiService.getAllCurrenciesAPI(baseCurrency)
+   }
+   getHistoricalData(){
+    return this._CurrencyApiService.getCurrencyHistoricalDataAPI()
    }
 }

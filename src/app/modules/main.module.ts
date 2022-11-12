@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { HeaderComponent } from './currency-exchanger/components/header/header.component';
@@ -34,6 +34,7 @@ import { CurrencyApiService } from '../core/api/currency-exchanger/currency-api.
 
   ],
   providers: [
+    DecimalPipe,
     CurrencyApiService,   
     CurrencyService,
    {provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor, multi: true},

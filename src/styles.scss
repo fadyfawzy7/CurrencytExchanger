@@ -3,13 +3,13 @@
 @import '_theme.scss';
 $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
 @import 'material-design-icons-iconfont/src/material-design-icons';
-
+@import "~@ng-select/ng-select/themes/material.theme.css";
 html, body { height: 100%; }
 body {
      margin: 0; 
     background-color: #303030;
 }
 
-*{
+:not(mat-icon) {
     font-family: 'Open Sans', "Helvetica Neue", sans-serif !important;
 }
