@@ -8,6 +8,7 @@ import { DetailsComponent } from './currency-exchanger/components/details/detail
 import { GridComponent } from './currency-exchanger/components/grid/grid.component';
 import { MaterialModule } from '../core/material/material.module';
 import { SharedModule } from '../core/shared/shared.module';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 
 @NgModule({
@@ -21,7 +22,10 @@ import { SharedModule } from '../core/shared/shared.module';
     CommonModule,
     MainRoutingModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ]
 })
 export class MainModule { }
