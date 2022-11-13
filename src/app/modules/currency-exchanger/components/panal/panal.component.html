@@ -17,7 +17,7 @@
                     <div class="col-md-3">
                         <mat-form-field class="w-100" appearance="fill" >
                             <mat-label>From</mat-label>
-                            <mat-select  formControlName="from"  [disabled]="convertForm.get('amount')?.value < 1">
+                            <mat-select  formControlName="from"  [disabled]="convertForm.get('amount')?.value < 1 || isDetails == true">
                               <mat-option *ngFor="let currency of allAvailableCurrencies"  [value]="currency.cc">
                                 {{ currency.cc }} | {{currency.value}}
                             </mat-option>
@@ -52,7 +52,7 @@
                 <div class="row mt-3">
                     <div class="col-md-4">
                         <div class="show-results">
-                                <p class="m-0 lead bg-secondary p-2 rounded text-center">Result from {{convertForm.get('from')?.value}} To {{convertForm.get('to')?.value}} is <span *ngIf="convertForm.get('amount')?.value != null" class="px-2 bg-dark">
+                                <p class="m-0 lead bg-secondary p-2 rounded text-center">Result from {{convertForm.get('from')?.value}} To {{convertForm.get('to')?.value}} is <span class="px-2 bg-dark">
                                      {{toCurrency *convertForm.get('amount')?.value | number:'1.0-2' }} </span>
                                 </p> 
                         </div>

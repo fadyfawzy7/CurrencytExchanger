@@ -50,7 +50,6 @@ export class PanalComponent implements OnInit {
         let allSymbols =Object(this.availableCurrencies.symbols);
         this.allAvailableCurrencies = Object.entries(allSymbols).map(([cc, value]) => ({cc, value}));
         this.allSymbolsNames = allSymbols
-
       }
     })
     this.defaultCall()
@@ -91,6 +90,7 @@ defaultCall(){
   this._currenceyService.getAllCurrencies('EUR').subscribe({
     next:(response)=> {
       this.latestCurrencyConvertContainer = response
+      this.toCurrency = this.latestCurrencyConvertContainer.rates[this.convertForm.get('to')?.value]
       this._Router.navigate(['/popular-currencies'])
       this._currenceyService.Grid.next(this.latestCurrencyConvertContainer);  
       
@@ -111,7 +111,6 @@ defaultCall(){
         next:(response)=> {
           this.latestCurrencyConvertContainer = response
           this.toCurrency = this.latestCurrencyConvertContainer.rates[this.convertForm.get('to')?.value]
-          JSON.stringify(localStorage.setItem('currency', this.convertForm.get('to')?.value))
           this._Router.navigate(['/popular-currencies'])
           this._currenceyService.Grid.next(this.latestCurrencyConvertContainer);
          
