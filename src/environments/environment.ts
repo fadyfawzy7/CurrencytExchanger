@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://api.apilayer.com/fixer/',
-  apiKey: 'IulDazFyo1W2gfEPcbEddsmxIvt90tm9'
+  apiKey: 'qGKF2ZSVEQ9zWLjUOUnRmPATqj4rJ4Lw'
 };
 
 /*
@@ -16,4 +16,6 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
-// list of api keys
+// list of api keys use these if limit exceeded 100
+// R42vOxBRn5BkBtOHI7m8v3FuWm1WXE44
+// xIVwiUCb6mugOuAAEsTM8MbA5rfu1xpI
